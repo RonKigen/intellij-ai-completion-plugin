@@ -2,40 +2,57 @@
     <id>com.example.ai-completion</id>
     <name>AI Code Completion</name>
     <vendor email="your-email@example.com" url="https://example.com">Your Company</vendor>
-    
+
     <description><![CDATA[
-    AI-powered code completion using Gemini API. Get intelligent code suggestions as you type.
+        AI-powered code completion using Gemini API. Get intelligent code suggestions as you type.
     ]]></description>
-    
+
     <version>1.0.0</version>
-    
+
     <!-- IntelliJ Platform compatibility -->
     <idea-version since-build="242.0" until-build="242.*"/>
-    
+
     <!-- Plugin dependencies -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
-    
+
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Register completion contributor for multiple languages -->
+        <!-- Register application services -->
+        <applicationService serviceImplementation="org.jetbrains.plugins.template.completion.AIService"/>
+        <applicationService serviceImplementation="org.jetbrains.plugins.template.completion.AISettings"/>
+
+        <!-- Register completion contributors -->
         <completion.contributor 
-            language="JAVA" 
+            language="JAVA"
             implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
         <completion.contributor 
-            language="kotlin" 
+            language="kotlin"
             implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
         <completion.contributor 
-            language="JavaScript" 
+            language="JavaScript"
             implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
         <completion.contributor 
-            language="TypeScript" 
+            language="TypeScript"
             implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
         <completion.contributor 
-            language="Python" 
+            language="Python"
             implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
         <completion.contributor 
-            language="TEXT" 
+            language="TEXT"
             implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
     </extensions>
+
+    <actions>
+        <action id="ai.manual.completion"
+                class="org.jetbrains.plugins.template.completion.ManualCompletionAction"
+                text="AI Complete">
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt SPACE"/>
+        </action>
+        <action id="ai.accept.suggestion"
+                class="org.jetbrains.plugins.template.completion.AcceptSuggestionAction"
+                text="Accept AI Suggestion">
+            <keyboard-shortcut keymap="$default" first-keystroke="TAB"/>
+        </action>
+    </actions>
 </idea-plugin>

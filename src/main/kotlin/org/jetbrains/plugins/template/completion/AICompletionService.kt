@@ -44,7 +44,7 @@ class AICompletionService {
         .connectTimeout(Duration.ofSeconds(10))
         .build()
     
-    private val apiKey = System.getenv("GEMINI_API_KEY") ?: "GEMINI_API_KEY"
+    private val apiKey = System.getenv("GEMINI_API_KEY") ?: "apiKey"
     private val apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
     
     private val json = Json {

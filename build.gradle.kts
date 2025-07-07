@@ -18,21 +18,21 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     testImplementation("junit:junit:4.13.2")
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
 intellij {
-    version.set("2024.2.5")  // Match your gradle.properties platformVersion
-    type.set("IC")
+    version.set("2024.2.5") // Make sure this matches your gradle.properties platformVersion
+    type.set("IC")          // IntelliJ Community
     plugins.set(listOf("java"))
-    
-    // Optimize for disk space
+
     downloadSources.set(false)
     instrumentCode.set(false)
 }
@@ -44,16 +44,20 @@ changelog {
 
 tasks {
     patchPluginXml {
-        changeNotes.set("Initial release")
+        changeNotes.set("""
+            Initial release.
+        """.trimIndent())
     }
-    
-    // Optimize JVM memory usage
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"  // Match Java target
-    }
-}
 
-// Configure Gradle to use less memory
-tasks.withType<Test> {
-    maxHeapSize = "1g"
+    // Ensure the Kotlin compiler uses the right JVM target
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+
+    // Reduce memory usage during tests
+    withType<Test> {
+        maxHeapSize = "1g"
+    }
 }
