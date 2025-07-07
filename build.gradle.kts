@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.intellij") version "1.17.0"
     id("org.jetbrains.changelog") version "2.2.0"
     kotlin("jvm") version "1.9.10"
-    kotlin("plugin.serialization") version "1.9.10"
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 group = "com.example"
