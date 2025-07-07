@@ -19,38 +19,38 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Register application services -->
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.completion.AIService"/>
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.completion.AISettings"/>
+        <applicationService serviceImplementation="com.github.ronkigen.intellijaicompletionplugin.completion.AIService"/>
+        <applicationService serviceImplementation="com.github.ronkigen.intellijaicompletionplugin.completion.AISettings"/>
 
         <!-- Register completion contributors -->
         <completion.contributor 
             language="JAVA"
-            implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
+            implementationClass="com.github.ronkigen.intellijaicompletionplugin.completion.AICompletionContributor"/>
         <completion.contributor 
             language="kotlin"
-            implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
+            implementationClass="com.github.ronkigen.intellijaicompletionplugin.completion.AICompletionContributor"/>
         <completion.contributor 
             language="JavaScript"
-            implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
+            implementationClass="com.github.ronkigen.intellijaicompletionplugin.completion.AICompletionContributor"/>
         <completion.contributor 
             language="TypeScript"
-            implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
+            implementationClass="com.github.ronkigen.intellijaicompletionplugin.completion.AICompletionContributor"/>
         <completion.contributor 
             language="Python"
-            implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
+            implementationClass="com.github.ronkigen.intellijaicompletionplugin.completion.AICompletionContributor"/>
         <completion.contributor 
             language="TEXT"
-            implementationClass="org.jetbrains.plugins.template.completion.AICompletionContributor"/>
+            implementationClass="com.github.ronkigen.intellijaicompletionplugin.completion.AICompletionContributor"/>
     </extensions>
 
     <actions>
         <action id="ai.manual.completion"
-                class="org.jetbrains.plugins.template.completion.ManualCompletionAction"
+                class="com.github.ronkigen.intellijaicompletionplugin.completion.ManualCompletionAction"
                 text="AI Complete">
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt SPACE"/>
         </action>
         <action id="ai.accept.suggestion"
-                class="org.jetbrains.plugins.template.completion.AcceptSuggestionAction"
+                class="com.github.ronkigen.intellijaicompletionplugin.completion.AcceptSuggestionAction"
                 text="Accept AI Suggestion">
             <keyboard-shortcut keymap="$default" first-keystroke="TAB"/>
         </action>
